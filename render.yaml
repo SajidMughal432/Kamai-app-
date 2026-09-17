@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: kamai-app
+    runtime: node
+    buildCommand: base64 -d kamai_source_for_github.b64 > kamai.zip && unzip -q kamai.zip -d . && npm --prefix server install
+    startCommand: npm --prefix server start
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        sync: false
